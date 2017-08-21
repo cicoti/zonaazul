@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pm="http://primefaces.org/mobile"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+    <f:view renderKitId="PRIMEFACES_MOBILE">
+        <h:head>
+        <script type="text/javascript">
+function fadeoutfunction(){
+ setTimeout(function(){
+    $('[id$=messages]').fadeOut();
+ },3000);
+} 
+</script>
+        </h:head>
+        <h:body>
+            <pm:page id="customerListing">
+                <pm:header>
+                </pm:header>
+                <pm:content>
+                    <h:form id="indexForm">
+                   	<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"  />
+                        <p:panel header="Autenticação">
+                           	<pm:field>
+    							 <p:inputText id="idEmail" name="email" value="#{autenticaBean.usuario.email}" />
+    							 <p:inputText id="idSenha" name="senha" value="#{autenticaBean.usuario.senha}" />
+    							 <p:commandButton value="Autenticar" action="#{autenticaBean.autenticar}" ajax="true" update="messages"	oncomplete="fadeoutfunction()" />
+							</pm:field>
+                        </p:panel>
+                    </h:form>
+                </pm:content>
+                <pm:footer>
+                </pm:footer>
+            </pm:page>
+ 
+        </h:body>
+    </f:view>
+</html>
