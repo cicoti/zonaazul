@@ -5,7 +5,6 @@ import java.util.Map;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.primefaces.context.RequestContext;
 
@@ -13,6 +12,8 @@ import br.com.zonaazul.util.Mensagem;
 
 
 public class AbstractBean implements Serializable {
+
+	private static final long serialVersionUID = 5350617597308693802L;
 	private static final String KEEP_DIALOG_OPENED = "KEEP_DIALOG_OPENED";
 
 	public AbstractBean() {

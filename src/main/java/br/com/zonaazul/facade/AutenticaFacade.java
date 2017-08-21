@@ -6,7 +6,6 @@ import javax.inject.Inject;
 
 import br.com.zonaazul.dto.Usuario;
 import br.com.zonaazul.service.AutenticaService;
-import br.com.zonaazul.util.BusinessServiceException;
 import br.com.zonaazul.util.ServiceException;
 
 
