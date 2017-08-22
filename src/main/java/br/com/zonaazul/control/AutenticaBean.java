@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -31,7 +32,8 @@ public class AutenticaBean extends AbstractBean implements Serializable {
 
 				try {
 					Usuario usuario = autenticaFacade.pesquisarUsuario(this.usuario);
-					return "principal";
+					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
+					return "solicitavaga";
 				} catch (BusinessServiceException e) {
 					alertaMensagem(e.getMessage(),""); 
 				} catch (RuntimeServiceException e) {

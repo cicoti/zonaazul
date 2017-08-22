@@ -17,20 +17,22 @@ function fadeoutfunction(){
         <h:body>
             <pm:page id="principal">
                 <pm:header>
-                	 <p:outputLabel id="idUsuario" value="#{creditoBean.usuario.email}" />
+                	 
                 </pm:header>
                 <pm:content>
                     <h:form id="principalForm">
                    	<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"  />
                         <p:panel header="Emitir Bilhete">
                            	<pm:field>
-                           	 <p:outputLabel id="idSaldo" value="#{creditoBean.saldo}" />
-                           	                           	 
+                           		<p:outputLabel id="idSaldo" value="Saldo atual: #{creditoBean.saldo} creditos." />
 							</pm:field>
                         </p:panel>
                     </h:form>
                 </pm:content>
                 <pm:footer>
+                  <div align="center">
+                	<p:outputLabel id="idEmail" value="#{creditoBean.usuario.email}" />
+                  </div>	
                 </pm:footer>
             </pm:page>
  
