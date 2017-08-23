@@ -10,6 +10,7 @@ import javax.inject.Named;
 
 import br.com.zonaazul.dto.Usuario;
 import br.com.zonaazul.facade.CompraFacade;
+import br.com.zonaazul.facade.VendaFacade;
 import br.com.zonaazul.util.BusinessServiceException;
 import br.com.zonaazul.util.RuntimeServiceException;
 
@@ -22,19 +23,19 @@ public class CreditoBean extends AbstractBean implements Serializable {
 	private Long saldo = 0L;
 	private Usuario usuario;
 	@Inject private CompraFacade compraFacade;
+	@Inject private VendaFacade vendaFacade;
 	
 	@PostConstruct
 	public void init() {
 		usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-		
 		try {
-			saldo = compraFacade.saldoCompra(usuario);
+			 this.setSaldo(compraFacade.saldoCompra(usuario) - vendaFacade.saldoVenda(usuario));
 		} catch (BusinessServiceException e) {
 			alertaMensagem(e.getMessage(),""); 
 		} catch (RuntimeServiceException e) {
 			erroMensagem(e.getMessage(),""); 
 		} catch (Exception e){
-			erroMensagem("Não foi possível recuperar o saldo, tente mais tarde.",""); 
+			erroMensagem("Não foi possível recuperar o credito, tente mais tarde.",""); 
 		} 
 		
 	}

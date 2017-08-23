@@ -10,8 +10,10 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
+import br.com.zonaazul.dto.Compra;
 import br.com.zonaazul.dto.RespostaErro;
 import br.com.zonaazul.dto.Usuario;
+import br.com.zonaazul.dto.Venda;
 import br.com.zonaazul.util.BusinessServiceException;
 import br.com.zonaazul.util.RuntimeServiceException;
 import br.com.zonaazul.util.ServiceException;
@@ -22,7 +24,7 @@ public class VendaService implements Serializable  {
 
 	private static final long serialVersionUID = -6878072357622466514L;
 
-	public long saldo(Usuario usuario) throws ServiceException  {
+	public Long saldo(Usuario usuario) throws ServiceException  {
 
 		Client client = Client.create();
 		ClientResponse response = null;
@@ -45,7 +47,8 @@ public class VendaService implements Serializable  {
 			}
 						
 			String jsonString =  response.getEntity(String.class);
-			return  0;//(Usuario)(new Gson().fromJson(jsonString, Usuario.class));
+			Venda venda = (Venda) (new Gson().fromJson(jsonString, Venda.class));
+			return  venda.getQtCredito();
 
 	}
 	

@@ -16,7 +16,7 @@ public class VendaFacade implements Serializable {
 	
 	@Inject private VendaService vendaService;
 
-	public long saldoVenda(Usuario usuario) throws ServiceException {
+	public Long saldoVenda(Usuario usuario) throws ServiceException {
 		return vendaService.saldo(usuario);
 	}
 	
