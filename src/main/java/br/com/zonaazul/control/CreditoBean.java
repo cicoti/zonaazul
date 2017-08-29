@@ -20,7 +20,7 @@ public class CreditoBean extends AbstractBean implements Serializable {
 
 	private static final long serialVersionUID = 529995973316030320L;
 	
-	private Long saldo = 0L;
+	private Long saldo;
 	private Usuario usuario;
 	@Inject private CompraFacade compraFacade;
 	@Inject private VendaFacade vendaFacade;
@@ -39,23 +39,6 @@ public class CreditoBean extends AbstractBean implements Serializable {
 		} 
 		
 	}
-		
-	/*public String autenticar()  {
-
-				try {
-					Usuario usuario = autenticaFacade.pesquisarUsuario(this.usuario);
-					return "principal";
-				} catch (BusinessServiceException e) {
-					alertaMensagem(e.getMessage(),""); 
-				} catch (RuntimeServiceException e) {
-					erroMensagem(e.getMessage(),""); 
-				} catch (Exception e){
-					erroMensagem("Não foi possível fazer a autenticação, tente mais tarde.",""); 
-				} 
-				
-				return null;
-
-    }*/
 
 	public Long getSaldo() {
 		return saldo;

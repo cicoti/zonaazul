@@ -2,6 +2,7 @@ package br.com.zonaazul.control;
 
 import java.io.Serializable;
 
+import javax.annotation.ManagedBean;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -15,6 +16,7 @@ import br.com.zonaazul.util.RuntimeServiceException;
 
 @Named
 @SessionScoped
+@ManagedBean
 public class AutenticaBean extends AbstractBean implements Serializable {
 
 	private static final long serialVersionUID = 529995973316030320L;
@@ -35,7 +37,7 @@ public class AutenticaBean extends AbstractBean implements Serializable {
 				try {
 					Usuario usuario = autenticaFacade.pesquisarUsuario(this.usuario);
 					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", usuario);
-					return "solicitavaga";
+					return "solicitaVaga";
 				} catch (BusinessServiceException e) {
 					alertaMensagem(e.getMessage(),""); 
 				} catch (RuntimeServiceException e) {
