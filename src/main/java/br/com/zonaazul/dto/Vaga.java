@@ -21,7 +21,7 @@ public class Vaga implements Serializable {
 	private Long id;
 	private String noZona;
 	private String noVaga;
-	private String nrLongitude;
-	private String nrLatitude;
+	private Long nrLongitude;
+	private Long nrLatitude;
 		
 }

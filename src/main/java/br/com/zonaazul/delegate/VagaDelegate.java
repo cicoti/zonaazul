@@ -39,6 +39,20 @@ public class VagaDelegate implements Serializable {
 		
 	}
 	
+	public Vaga pesquisarVagaProximidade(Vaga v) throws ServiceException {
+		List<Vaga> listaVagaLivre = this.listaVagaLivre();
+		for(Vaga vaga : listaVagaLivre){
+			if(vaga.getNoVaga().equals(v.getNoVaga())){
+				System.out.println("Solicitada latitude " + v.getNrLatitude());
+				System.out.println("Solicitada longitude " + v.getNrLongitude());
+				System.out.println("Efetiva latitude " + vaga.getNrLatitude());
+				System.out.println("Efetiva longitude "+ vaga.getNrLongitude());
+			}
+		}
+		
+		return null;
+	}
+	
 
 	private List<Vaga> listaVagaLivre() throws ServiceException {
 		return vagaFacade.listaVagaLivre();

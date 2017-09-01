@@ -12,11 +12,9 @@ import br.com.zonaazul.delegate.VagaDelegate;
 import br.com.zonaazul.dto.Placa;
 import br.com.zonaazul.dto.Usuario;
 import br.com.zonaazul.dto.Vaga;
-import br.com.zonaazul.facade.AutenticaFacade;
 import br.com.zonaazul.facade.PlacaFacade;
 import br.com.zonaazul.util.BusinessServiceException;
 import br.com.zonaazul.util.RuntimeServiceException;
-import br.com.zonaazul.util.ServiceException;
 
 @Named
 @SessionScoped
@@ -27,7 +25,7 @@ public class SolicitaBean extends AbstractBean implements Serializable {
 	private Usuario usuario;
 	private Placa placa;
 	private Vaga vaga;
-		
+	
 	@Inject VagaDelegate vagaDelegate;
 	@Inject PlacaFacade placaFacade;
 	
@@ -37,15 +35,29 @@ public class SolicitaBean extends AbstractBean implements Serializable {
 		placa = new Placa();
 		placa.setIdUsuario(usuario.getId());
 		vaga = new Vaga();
-				
 	}
-		
+	
 	public String solicitar()  {
+        
+       /* ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
+        
+        Map<String, String> map = ec.getRequestParameterMap();
+
+		String longitude = map.get("longitude");
+		String latitude = map.get("latitude");
 		
+		System.out.println(longitude + " - " + latitude);*/
+		
+
 		try {
-			System.out.println("Latitude: "  + this.vaga.getNrLatitude());
+
+			//System.out.println(this.vaga.getNrLatitude());
+			//System.out.println(this.vaga.getNrLongitude());
+			
 			vagaDelegate.pesquisarVagaExiste(this.vaga);
 			vagaDelegate.pesquisarVagaLivre(this.vaga);
+			vagaDelegate.pesquisarVagaProximidade(this.vaga);
+			
 			placaFacade.pesquisarPlacaUsuario(this.placa);
 			
 		} catch (BusinessServiceException e) {

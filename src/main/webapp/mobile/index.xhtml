@@ -1,39 +1,56 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:pm="http://primefaces.org/mobile"
-      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-    <f:view renderKitId="PRIMEFACES_MOBILE">
-        <h:head>
-        <script type="text/javascript">
-function fadeoutfunction(){
- setTimeout(function(){
-    $('[id$=messages]').fadeOut();
- },5000);
-} 
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<h:head>
+
+	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, target-densitydpi=device-dpi"/>
+	<link rel="stylesheet"
+		href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script
+		src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+	<script type="text/javascript">
+
+
+$("#idMessage").show(setTimeout(function() { $("#idMessage").fadeOut(); }, 5000));
+
 </script>
-        </h:head>
-        <h:body>
-            <pm:page id="index">
-                <pm:header>
-                </pm:header>
-                <pm:content>
-                    <h:form id="indexForm">
-                   	<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"  />
-                        <p:panel header="Autenticação">
-                           	<pm:field>
-    							 <p:inputText id="idEmail" name="email" value="#{autenticaBean.usuario.email}" />
-    							 <p:inputText id="idSenha" name="senha" value="#{autenticaBean.usuario.senha}" />
-    							 <p:commandButton value="Autenticar" action="#{autenticaBean.autenticar}" ajax="true" update="messages"	oncomplete="fadeoutfunction()" />
-							</pm:field>
-                        </p:panel>
-                    </h:form>
-                </pm:content>
-                <pm:footer>
-                </pm:footer>
-            </pm:page>
- 
-        </h:body>
-    </f:view>
+
+</h:head>
+<body>
+
+	<div data-role="page">
+
+		<div data-role="header">
+			<h1>Autenticação</h1>
+		</div>
+
+		<div data-role="main" class="ui-content">
+			<form data-ajax="false" jsf:id="formAutenticar" jsf:prependId="false">
+				<p:messages id="idMessage" showDetail="true" autoUpdate="true"
+					closable="true" />
+				<div class="ui-field-contain">
+					<input placeholder="Digite seu e-mail." type="text" name="email"
+						jsf:value="#{autenticaBean.usuario.email}" jsf:id="idEmail" /> <input
+						placeholder="Digite sua senha." type="password" name="senha"
+						jsf:value="#{autenticaBean.usuario.senha}" jsf:id="idSenha"
+						jsf:autocomplete="off" />
+				</div>
+
+				<button jsf:action="#{autenticaBean.autenticar()}" jsf:ajax="true">Autenticar</button>
+
+			</form>
+		</div>
+	</div>
+
+	<div data-role="footer"></div>
+
+</body>
 </html>

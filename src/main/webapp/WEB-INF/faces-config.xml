@@ -20,7 +20,11 @@
   </navigation-case>
  </navigation-rule>
  
- <application>
-  <message-bundle>messages</message-bundle>
- </application>
+<application>
+		<resource-bundle>
+			<base-name>config.properties</base-name>
+			<var>config</var>
+		</resource-bundle>
+	</application>
+	
 </faces-config>
