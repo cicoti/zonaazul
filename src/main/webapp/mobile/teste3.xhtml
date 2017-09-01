@@ -1,0 +1,94 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pm="http://primefaces.org/mobile"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+            
+<f:view renderKitId="PRIMEFACES_MOBILE">
+
+<h:head>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+  		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+  		<script type="text/javascript" src="gmaps.js"></script>
+  		<link rel="stylesheet" type="text/css" href="examples.css" />
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+var longitude = 0;
+var latitude = 0;
+	
+    GMaps.geolocate({
+    success: function(position){
+
+   	 	longitude = position.coords.latitude;
+   	 	latitude = position.coords.longitude;
+
+   	    $('[id$=idLongitude]').val(longitude);
+ 	    $('[id$=idLatitude]').val(latitude);
+  	 	
+    },
+    error: function(error){
+      alert('Geolocation failed: '+error.message);
+    },
+    not_supported: function(){
+      alert("Your browser does not support geolocation");
+    }
+    
+   
+    
+  }); 
+
+	
+  
+});
+
+
+function fadeoutfunction(){
+	 setTimeout(function(){
+	    $('[id$=messages]').fadeOut();
+	 },5000);
+	} 
+</script>
+
+</h:head>
+ <h:body>
+            <pm:page id="principal">
+                <pm:header>
+                	 
+                </pm:header>
+                <pm:content>
+                    <h:form id="principalForm">
+                    <p:inputText id="idLongitude" name="longitude" value="#{solicitaBean.vaga.nrLongitude}" />
+                    <p:inputText id="idLatitude" name="latitude" value="#{solicitaBean.vaga.nrLatitude}" />
+                   	<p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"  />
+                        <p:panel header="Solicitar Bilhete">
+                           	<pm:field>
+                           		<p:outputLabel id="idSaldo" value="Saldo atual: #{creditoBean.saldo} creditos." />
+							</pm:field>
+                  
+                        	<pm:field>
+                        		  Placa do Veiculo:
+                        		 <p:inputText id="idPlaca" value="#{solicitaBean.placa.nrPlaca}"/>
+    							  Número da Vaga:
+    							 <p:inputText id="idVaga" name="vaga" value="#{solicitaBean.vaga.noVaga}"/>
+								 <p:separator />
+    					 		 <p:commandButton value="Solicitar" action="#{solicitaBean.solicitar}" ajax="true" update="messages"	oncomplete="fadeoutfunction()" />
+    					 	</pm:field>
+    					 </p:panel>	 
+                    </h:form>
+                </pm:content>
+                <pm:footer>
+                  <div align="center">
+                	<p:outputLabel id="idEmail" value="#{creditoBean.usuario.email}" />
+                  </div>	
+                </pm:footer>
+            </pm:page>
+ 
+        </h:body>
+</f:view>
+</html>

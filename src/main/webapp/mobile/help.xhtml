@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pm="http://primefaces.org/mobile">
+<f:view renderKitId="PRIMEFACES_MOBILE" />
+<h:head>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+	var A = 1;
+	var B = 2;
+	 $("[id$=idA]").val("A");
+	    $("[id$=idB]").val("B");
+
+	/*     $('[id$=idLongitude]').val(longitude);
+ 	    $('[id$=idLatitude]').val(latitude); */
+ 
+	 
+ 
+});
+</script>
+</h:head>
+<h:body>
+
+	<pm:page>
+		<pm:header title="Title">3</pm:header>
+		<pm:content>
+			<h:form id="testForm">
+				<p:inputText id="idA" />
+				<p:inputText id="idB" />
+			</h:form>
+		</pm:content>
+		<pm:footer title="Footer"></pm:footer>
+	</pm:page>
+	
+</h:body>
+</html>
