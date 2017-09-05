@@ -1,0 +1,68 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<h:head>
+
+	<meta name="viewport"
+		content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, target-densitydpi=device-dpi" />
+	<link rel="stylesheet"
+		href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script
+		src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	$("#idUsuario").text("#{confirmaBean.usuario.email}");
+	$("#idPlaca").text("Placa: #{confirmaBean.placa.nrPlaca}");
+	$("#idVaga").text("Vaga: #{confirmaBean.vaga.noVaga}");
+	$("#idPeriodoDe").text("De: #{confirmaBean.periodo.inicio}");
+	$("#idPeriodoAte").text("Até: #{confirmaBean.periodo.fim}");
+	$("#idCredito").text("1 crédito: R$ #{creditoBean.valorCredito()}").replace('.',',');
+	
+});
+
+$("#idMessage").show(setTimeout(function() { $("#idMessage").fadeOut(); }, 5000));
+
+</script>
+
+</h:head>
+<body>
+
+	<div data-role="page">
+
+		<div data-role="header">
+			<h1>Confirmação</h1>
+		</div>
+		
+		
+		<div data-role="solicita" class="ui-content">
+			<form data-ajax="false" jsf:id="formConfirmar" jsf:prependId="false">
+			<p:messages id="idMessage" showDetail="true" autoUpdate="true"
+						closable="true" />
+			<label><b>Identificação:</b></label>			
+			<label id="idUsuario" />			
+			<label id="idPlaca" />
+			<label id="idVaga" />
+			<label><b>Periodo de permanência:</b></label>			
+			<label id="idPeriodoDe"/>
+			<label id="idPeriodoAte"/>
+			<label><b>Custo:</b></label>
+			<label id="idCredito"/>	
+			<button jsf:action="#{confirmaBean.confirmar()}" jsf:ajax="true">Confirmar</button>
+			</form>
+		</div>
+
+	</div>
+
+	<div data-role="footer"></div>
+
+</body>
+</html>

@@ -26,5 +26,6 @@ br\com\zonaazul\dto\Usuario.class
 br\com\zonaazul\service\VagaService$2.class
 br\com\zonaazul\delegate\VagaDelegate.class
 br\com\zonaazul\facade\AutenticaFacade.class
+br\com\zonaazul\util\Haversine.class
 br\com\zonaazul\util\RuntimeServiceException.class
 br\com\zonaazul\dto\Compra.class

@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import br.com.zonaazul.dto.Vaga;
 import br.com.zonaazul.facade.VagaFacade;
 import br.com.zonaazul.util.BusinessServiceException;
+import br.com.zonaazul.util.Haversine;
 import br.com.zonaazul.util.ServiceException;
 
 public class VagaDelegate implements Serializable { 
@@ -43,10 +44,25 @@ public class VagaDelegate implements Serializable {
 		List<Vaga> listaVagaLivre = this.listaVagaLivre();
 		for(Vaga vaga : listaVagaLivre){
 			if(vaga.getNoVaga().equals(v.getNoVaga())){
-				System.out.println("Solicitada latitude " + v.getNrLatitude());
-				System.out.println("Solicitada longitude " + v.getNrLongitude());
-				System.out.println("Efetiva latitude " + vaga.getNrLatitude());
-				System.out.println("Efetiva longitude "+ vaga.getNrLongitude());
+				
+				System.out.println("Longitude GPS " + v.getNrLongitude());
+				System.out.println("Latitude GPS " + v.getNrLatitude());
+
+				System.out.println("Longitude Vaga Solicitada "+ vaga.getNrLongitude());
+				System.out.println("Latitude Vaga Solicitada " + vaga.getNrLatitude());
+
+				//Haversine.distance(startLat, startLong, endLat, endLong)
+				int distancia = (int) (Haversine.distance(Double.parseDouble(v.getNrLatitude().replaceAll(",", ".")), Double.parseDouble(v.getNrLongitude().replaceAll(",", ".")), Double.parseDouble(vaga.getNrLatitude().replaceAll(",", ".")), Double.parseDouble(vaga.getNrLongitude().replaceAll(",", "."))));
+				
+				System.out.println("Distancia: " + distancia);
+				
+				if(distancia > 50){
+					throw new BusinessServiceException("Você está distante da vaga solicitada.");
+				} else {
+					return v;
+				}
+								
+				
 			}
 		}
 		

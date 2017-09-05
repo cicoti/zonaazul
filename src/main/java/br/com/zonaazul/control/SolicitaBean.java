@@ -28,6 +28,7 @@ public class SolicitaBean extends AbstractBean implements Serializable {
 	
 	@Inject VagaDelegate vagaDelegate;
 	@Inject PlacaFacade placaFacade;
+	@Inject CreditoBean creditoBean;
 	
 	@PostConstruct
 	public void init() {
@@ -38,27 +39,22 @@ public class SolicitaBean extends AbstractBean implements Serializable {
 	}
 	
 	public String solicitar()  {
-        
-       /* ExternalContext ec = FacesContext.getCurrentInstance().getExternalContext();
-        
-        Map<String, String> map = ec.getRequestParameterMap();
-
-		String longitude = map.get("longitude");
-		String latitude = map.get("latitude");
-		
-		System.out.println(longitude + " - " + latitude);*/
-		
 
 		try {
-
-			//System.out.println(this.vaga.getNrLatitude());
-			//System.out.println(this.vaga.getNrLongitude());
 			
+			creditoBean.saldoPositivo();
+							
 			vagaDelegate.pesquisarVagaExiste(this.vaga);
 			vagaDelegate.pesquisarVagaLivre(this.vaga);
 			vagaDelegate.pesquisarVagaProximidade(this.vaga);
 			
 			placaFacade.pesquisarPlacaUsuario(this.placa);
+			
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("vaga", this.vaga);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("placa", this.placa);
+			
+			
+			return "confirmaSolicitacao";
 			
 		} catch (BusinessServiceException e) {
 			alertaMensagem(e.getMessage(),""); 

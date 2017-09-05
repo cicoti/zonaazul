@@ -26,6 +26,8 @@ public class AutenticaBean extends AbstractBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		usuario = new Usuario();
+		usuario.setEmail("silvio.cicoti@gmail.com");
+		usuario.setSenha("lunaduna");
 	}
 		
 	public String autenticar()  {

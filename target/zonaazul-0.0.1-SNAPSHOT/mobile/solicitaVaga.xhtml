@@ -8,7 +8,8 @@
 
 <h:head>
 
-	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, target-densitydpi=device-dpi"/>
+	<meta name="viewport"
+		content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, target-densitydpi=device-dpi" />
 	<link rel="stylesheet"
 		href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
@@ -22,16 +23,20 @@
 
 	<script type="text/javascript">
 
-$(document).ready(function(){
+	
 
+
+	
+$(document).ready(function(){
+		
 	var longitude = 0;
 	var latitude = 0;
 		
 	    GMaps.geolocate({
 	    success: function(position){
 
-	   	 	longitude = position.coords.latitude;
-	   	 	latitude = position.coords.longitude;
+	   	 	longitude = position.coords.longitude;
+	   	 	latitude = position.coords.latitude;
 
 	   	    $('[id$=idLongitude]').val(longitude);
 	 	    $('[id$=idLatitude]').val(latitude);
@@ -43,15 +48,17 @@ $(document).ready(function(){
 	    not_supported: function(){
 	      alert("Your browser does not support geolocation");
 	    }
-	    
-	   
+	       
 	    
 	  }); 
 
+
+		$("#idGPS").hide();
+
+		$("#idCreditoSaldo").text("Saldo atual:  #{creditoBean.saldo} creditos.");
 		
 	  
 	});
-
 
 $("#idMessage").show(setTimeout(function() { $("#idMessage").fadeOut(); }, 5000));
 
@@ -65,23 +72,25 @@ $("#idMessage").show(setTimeout(function() { $("#idMessage").fadeOut(); }, 5000)
 		<div data-role="header">
 			<h1>Solicitação de Vaga</h1>
 		</div>
-
+		
 		<div data-role="solicita" class="ui-content">
 			<form data-ajax="false" jsf:id="formSolicitar" jsf:prependId="false">
 				<p:messages id="idMessage" showDetail="true" autoUpdate="true"
-					closable="true" />
+						closable="true" />
+				<label id="idCreditoSaldo" />
 				<div class="ui-field-contain">
-					<input hidden="true" type="text" name="longitude"
-						jsf:value="#{solicitaBean.vaga.nrLatitude}" jsf:id="idLatitude" />
-					<input hidden="true" type="text" name="latitude"
-						jsf:value="#{solicitaBean.vaga.nrLongitude}" jsf:id="idLongitude" />
 					<input placeholder="Digite a placa." type="text" name="placa"
-						jsf:value="#{solicitaBean.placa.nrPlaca}" jsf:id="idPlaca" /> <input
-						placeholder="Digite a vaga." type="text" name="vaga"
+						jsf:value="#{solicitaBean.placa.nrPlaca}" jsf:id="idPlaca" /> 
+					<input	placeholder="Digite a vaga." type="text" name="vaga"
 						jsf:value="#{solicitaBean.vaga.noVaga}" jsf:id="idVaga" />
 				</div>
 				<button jsf:action="#{solicitaBean.solicitar()}" jsf:ajax="true">Solicitar</button>
-			
+				<div id="idGPS">
+				<input type="text" name="longitude"
+					jsf:value="#{solicitaBean.vaga.nrLongitude}" jsf:id="idLongitude" />
+				<input type="text" name="latitude"
+					jsf:value="#{solicitaBean.vaga.nrLatitude}" jsf:id="idLatitude" />
+				</div>
 			</form>
 		</div>
 	</div>

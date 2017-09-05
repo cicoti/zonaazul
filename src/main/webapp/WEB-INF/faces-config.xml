@@ -15,7 +15,17 @@
   <from-view-id>/mobile/*</from-view-id>
   <navigation-case>
    <from-outcome>solicitaVaga</from-outcome>
-   <to-view-id>/mobile/solicitaVaga.jsf</to-view-id>
+   <to-view-id>/mobile/solicita.jsf</to-view-id>
+   <redirect/>
+  </navigation-case>
+ </navigation-rule>
+ 
+ 
+  <navigation-rule>
+  <from-view-id>/mobile/*</from-view-id>
+  <navigation-case>
+   <from-outcome>confirmaSolicitacao</from-outcome>
+   <to-view-id>/mobile/confirma.jsf</to-view-id>
    <redirect/>
   </navigation-case>
  </navigation-rule>

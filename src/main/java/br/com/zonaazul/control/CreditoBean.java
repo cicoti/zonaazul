@@ -8,11 +8,14 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.zonaazul.dto.Credito;
 import br.com.zonaazul.dto.Usuario;
 import br.com.zonaazul.facade.CompraFacade;
+import br.com.zonaazul.facade.CreditoFacade;
 import br.com.zonaazul.facade.VendaFacade;
 import br.com.zonaazul.util.BusinessServiceException;
 import br.com.zonaazul.util.RuntimeServiceException;
+import br.com.zonaazul.util.ServiceException;
 
 @Named
 @SessionScoped
@@ -24,6 +27,7 @@ public class CreditoBean extends AbstractBean implements Serializable {
 	private Usuario usuario;
 	@Inject private CompraFacade compraFacade;
 	@Inject private VendaFacade vendaFacade;
+	@Inject private CreditoFacade creditoFacade;
 	
 	@PostConstruct
 	public void init() {
@@ -39,7 +43,30 @@ public class CreditoBean extends AbstractBean implements Serializable {
 		} 
 		
 	}
-
+	
+	public Double valorCredito() throws ServiceException{
+		Credito credito = null;
+		try {
+			 credito = creditoFacade.buscarCredito();
+		} catch (BusinessServiceException e) {
+			alertaMensagem(e.getMessage(),""); 
+		} catch (RuntimeServiceException e) {
+			erroMensagem(e.getMessage(),""); 
+		} catch (Exception e){
+			erroMensagem("Não foi possível recuperar o credito, tente mais tarde.",""); 
+		} 
+		
+		return credito.getVlCredito();
+	}
+	
+	public void saldoPositivo() throws ServiceException{
+		System.out.println("Saldo: " + this.getSaldo());
+		if(this.getSaldo()<=0){
+			throw new BusinessServiceException("Saldo insuficiente.");
+		}
+		
+	}
+	
 	public Long getSaldo() {
 		return saldo;
 	}
@@ -55,13 +82,5 @@ public class CreditoBean extends AbstractBean implements Serializable {
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
-	
-	
-
-
-	
-	
-	
-	
 	
 }

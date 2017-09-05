@@ -3,9 +3,9 @@
  <PROCESS-ITEM NAME="rules:#mobile#*" PATH="/mobile/*"
   SHAPE="32,129,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#mobile#*:0" NAME="item" PATH="/mobile/*" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="solicitaVaga::#mobile#solicitaVaga.jsf"
-    NAME="output" PATH="/mobile/solicitaVaga.jsf"
-    TARGET="rules:#mobile#solicitaVaga.jsf" TITLE="solicitaVaga" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="solicitaVaga::#mobile#solicita.jsf"
+    NAME="output" PATH="/mobile/solicita.jsf"
+    TARGET="rules:#mobile#solicita.jsf" TITLE="solicitaVaga" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#*" PATH="/*" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
@@ -17,6 +17,16 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#principal.jsf" PATH="/principal.jsf"
   SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#mobile#solicitaVaga.jsf"
-  PATH="/mobile/solicitaVaga.jsf" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#mobile#*:1" PATH="/mobile/*"
+  SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#mobile#*:1" NAME="item" PATH="/mobile/*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="confirmaSolicitacao::#mobile#confirma.jsf"
+    NAME="output" PATH="/mobile/confirma.jsf"
+    TARGET="rules:#mobile#confirma.jsf" TITLE="confirmaSolicitacao" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#mobile#confirma.jsf"
+  PATH="/mobile/confirma.jsf" SHAPE="240,369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#mobile#solicita.jsf"
+  PATH="/mobile/solicita.jsf" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>
