@@ -40,33 +40,38 @@ public class VagaDelegate implements Serializable {
 		
 	}
 	
-	public Vaga pesquisarVagaProximidade(Vaga v) throws ServiceException {
+	public boolean pesquisarVagaProximidade(Vaga v) throws ServiceException {
 		List<Vaga> listaVagaLivre = this.listaVagaLivre();
 		for(Vaga vaga : listaVagaLivre){
 			if(vaga.getNoVaga().equals(v.getNoVaga())){
-				
-				System.out.println("Longitude GPS " + v.getNrLongitude());
-				System.out.println("Latitude GPS " + v.getNrLatitude());
-
-				System.out.println("Longitude Vaga Solicitada "+ vaga.getNrLongitude());
-				System.out.println("Latitude Vaga Solicitada " + vaga.getNrLatitude());
 
 				//Haversine.distance(startLat, startLong, endLat, endLong)
 				int distancia = (int) (Haversine.distance(Double.parseDouble(v.getNrLatitude().replaceAll(",", ".")), Double.parseDouble(v.getNrLongitude().replaceAll(",", ".")), Double.parseDouble(vaga.getNrLatitude().replaceAll(",", ".")), Double.parseDouble(vaga.getNrLongitude().replaceAll(",", "."))));
+							
+				System.out.println("Distancia :" + distancia);
 				
-				System.out.println("Distancia: " + distancia);
-				
-				if(distancia > 50){
+				if(distancia > 100){
 					throw new BusinessServiceException("Você está distante da vaga solicitada.");
 				} else {
-					return v;
+					return true;
 				}
 								
-				
 			}
 		}
 		
-		return null;
+		return false;
+	}
+	
+	public Vaga buscarVaga(Vaga v) throws ServiceException{
+		List<Vaga> listaVaga = this.listaVaga();
+		for(Vaga vaga : listaVaga){
+			if(vaga.getNoVaga().equals(v.getNoVaga())){
+				return vaga;
+			}
+		}
+		
+		throw new BusinessServiceException("A vaga solicitada não foi encontrada.");
+		
 	}
 	
 

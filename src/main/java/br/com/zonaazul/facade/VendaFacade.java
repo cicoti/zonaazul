@@ -5,7 +5,7 @@ import java.io.Serializable;
 import javax.inject.Inject;
 
 import br.com.zonaazul.dto.Usuario;
-import br.com.zonaazul.service.AutenticaService;
+import br.com.zonaazul.dto.Venda;
 import br.com.zonaazul.service.VendaService;
 import br.com.zonaazul.util.ServiceException;
 
@@ -20,4 +20,8 @@ public class VendaFacade implements Serializable {
 		return vendaService.saldo(usuario);
 	}
 	
+	public void efetivar(Venda venda) throws ServiceException {
+		 vendaService.efetivar(venda);
+	}
+ 	
 }

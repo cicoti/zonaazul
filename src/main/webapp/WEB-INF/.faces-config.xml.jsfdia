@@ -20,13 +20,13 @@
  <PROCESS-ITEM NAME="rules:#mobile#*:1" PATH="/mobile/*"
   SHAPE="32,241,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#mobile#*:1" NAME="item" PATH="/mobile/*" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT ID="confirmaSolicitacao::#mobile#confirma.jsf"
-    NAME="output" PATH="/mobile/confirma.jsf"
-    TARGET="rules:#mobile#confirma.jsf" TITLE="confirmaSolicitacao" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="finalizaSolicitacao::#mobile#finaliza.jsf"
+    NAME="output" PATH="/mobile/finaliza.jsf"
+    TARGET="rules:#mobile#finaliza.jsf" TITLE="finalizaSolicitacao" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#mobile#confirma.jsf"
-  PATH="/mobile/confirma.jsf" SHAPE="240,369,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#mobile#solicita.jsf"
   PATH="/mobile/solicita.jsf" SHAPE="240,145,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#mobile#finaliza.jsf"
+  PATH="/mobile/finaliza.jsf" SHAPE="240,369,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

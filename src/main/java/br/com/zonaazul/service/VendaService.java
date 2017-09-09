@@ -10,7 +10,6 @@ import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
-import br.com.zonaazul.dto.Compra;
 import br.com.zonaazul.dto.RespostaErro;
 import br.com.zonaazul.dto.Usuario;
 import br.com.zonaazul.dto.Venda;
@@ -50,6 +49,30 @@ public class VendaService implements Serializable  {
 			Venda venda = (Venda) (new Gson().fromJson(jsonString, Venda.class));
 			return  venda.getQtCredito();
 
+	}
+	
+	public void efetivar(Venda venda) throws ServiceException  {
+
+		Client client = Client.create();
+		ClientResponse response = null;
+		JSONObject jsonObj = new JSONObject(venda);
+		
+			WebResource webResource = client.resource(WebUtils.getURLRest("v1/venda/efetivar"));
+			response = webResource.type("application/json")
+			   .post(ClientResponse.class, jsonObj.toString());
+			
+			if (response.getStatus()!=200) {
+				if(response.getStatus()==400){
+					String jsonString =  response.getEntity(String.class);
+					RespostaErro respostaErro = (RespostaErro) new Gson().fromJson(jsonString, RespostaErro.class);
+					throw new BusinessServiceException(respostaErro.getCodigo() + ": \n" + respostaErro.getErro());
+					
+				}
+				String jsonString =  response.getEntity(String.class);
+				RespostaErro respostaErro = (RespostaErro) new Gson().fromJson(jsonString, RespostaErro.class);
+				throw new RuntimeServiceException(respostaErro.getCodigo() + ": \n" + respostaErro.getErro());
+			}
+						
 	}
 	
 }

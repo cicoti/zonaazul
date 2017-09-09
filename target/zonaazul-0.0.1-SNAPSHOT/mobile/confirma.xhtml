@@ -39,11 +39,11 @@ $("#idMessage").show(setTimeout(function() { $("#idMessage").fadeOut(); }, 5000)
 	<div data-role="page">
 
 		<div data-role="header">
-			<h1>Confirmação</h1>
+			<h1>Bilhete Emitido com Sucesso!</h1>
 		</div>
 		
 		
-		<div data-role="solicita" class="ui-content">
+		<div data-role="confirma" class="ui-content">
 			<form data-ajax="false" jsf:id="formConfirmar" jsf:prependId="false">
 			<p:messages id="idMessage" showDetail="true" autoUpdate="true"
 						closable="true" />
@@ -56,7 +56,6 @@ $("#idMessage").show(setTimeout(function() { $("#idMessage").fadeOut(); }, 5000)
 			<label id="idPeriodoAte"/>
 			<label><b>Custo:</b></label>
 			<label id="idCredito"/>	
-			<button jsf:action="#{confirmaBean.confirmar()}" jsf:ajax="true">Confirmar</button>
 			</form>
 		</div>
 

@@ -24,8 +24,8 @@
   <navigation-rule>
   <from-view-id>/mobile/*</from-view-id>
   <navigation-case>
-   <from-outcome>confirmaSolicitacao</from-outcome>
-   <to-view-id>/mobile/confirma.jsf</to-view-id>
+   <from-outcome>finalizaSolicitacao</from-outcome>
+   <to-view-id>/mobile/finaliza.jsf</to-view-id>
    <redirect/>
   </navigation-case>
  </navigation-rule>

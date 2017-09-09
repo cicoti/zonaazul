@@ -3,7 +3,7 @@ package br.com.zonaazul.control;
 import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,7 +14,7 @@ import br.com.zonaazul.util.BusinessServiceException;
 import br.com.zonaazul.util.RuntimeServiceException;
 
 @Named
-@SessionScoped
+@RequestScoped
 public class AutenticaBean extends AbstractBean implements Serializable {
 
 	private static final long serialVersionUID = 529995973316030320L;

@@ -1,7 +1,7 @@
 package br.com.zonaazul.dto;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -17,17 +17,17 @@ import lombok.ToString;
 @JsonIgnoreProperties ( ignoreUnknown = true )
 public class Solicita implements Serializable { 
 
-	private static final long serialVersionUID = 5604678881122623511L;
-	
+	private static final long serialVersionUID = 6547887710164561219L;
+
 	private Long id;
-	private Long idUsuario;
-	private Long idVenda;
-	private Long idVaga;
-	private Long idPlaca;
-	private Date inicioPeriodo;
-	private Date fimPeriodo;
-	private boolean extensao;
-	private boolean negado;
-	private String motivo;
+	private Usuario usuario;
+	private Venda venda;
+	private Vaga vaga;
+	private Placa placa;
+	private String inicio;
+	private String fim;
+	private int blExtensao;
+	private int blNegado;
+	private String dsMotivo;
 	
 }

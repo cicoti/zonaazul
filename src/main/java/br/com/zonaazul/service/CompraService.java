@@ -46,6 +46,7 @@ public class CompraService implements Serializable  {
 			}
 						
 			String jsonString =  response.getEntity(String.class);
+		
 			Compra compra = (Compra) (new Gson().fromJson(jsonString, Compra.class));
 			
 			return  compra.getQtCredito();

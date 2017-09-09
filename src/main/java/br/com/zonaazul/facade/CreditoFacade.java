@@ -16,6 +16,7 @@ public class CreditoFacade implements Serializable {
 	@Inject private CreditoService creditoService;
 
 	public Credito buscarCredito() throws ServiceException {
+		//Retorna o valor de cada credito.
 		return creditoService.buscarCredito();
 	}
 	
