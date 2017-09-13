@@ -23,13 +23,11 @@ $(document).ready(function(){
 	$("#idUsuario").text("#{solicitaBean.solicita.usuario.email}");
 	$("#idPlaca").text("Placa: #{solicitaBean.solicita.placa.nrPlaca}");
 	$("#idVaga").text("Vaga: #{solicitaBean.solicita.vaga.noVaga}");
-	$("#idPeriodoDe").text("De: #{solicitaBean.solicita.inicio}");
-	$("#idPeriodoAte").text("Até: #{solicitaBean.solicita.fim}");
+	$("#idPeriodoDe").text("De: #{solicitaBean.solicita.dtInicio}");
+	$("#idPeriodoAte").text("Até: #{solicitaBean.solicita.dtFim}");
 	$("#idCredito").text("1 crédito: R$ #{creditoBean.valorCredito()}").replace('.',',');
 	
 });
-
-$("#idMessage").show(setTimeout(function() { $("#idMessage").fadeOut(); }, 5000));
 
 </script>
 

@@ -21,6 +21,5 @@ public class RespostaErro implements Serializable {
 	private String codigo;
 	private String erro;
 	private String descricao;
-
 	
 }

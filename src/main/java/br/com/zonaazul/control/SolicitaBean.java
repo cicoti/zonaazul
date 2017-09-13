@@ -52,7 +52,7 @@ public class SolicitaBean extends AbstractBean implements Serializable {
 		solicita = (Solicita) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("solicita");
 		usuario = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
 		placa = new Placa();
-		placa.setIdUsuario(usuario.getId());
+		placa.setIdUsuario(usuario.getIdUsuario());
 		vaga = new Vaga();
 	}
 	
@@ -70,8 +70,8 @@ public class SolicitaBean extends AbstractBean implements Serializable {
 			
 			placa = placaFacade.pesquisarPlacaUsuario(this.placa);
 			
-			//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("vaga", vaga);
-			//FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("placa", placa);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("vaga", vaga);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("placa", placa);
 			
 			credito = creditoFacade.buscarCredito();
 					
@@ -90,8 +90,8 @@ public class SolicitaBean extends AbstractBean implements Serializable {
 			solicita.setDsMotivo("");
 			
 			DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-			solicita.setInicio(df.format(new Date()).toString());
-			solicita.setFim(df.format(new Date().getTime() + 60 * 60 * 1000).toString());
+			solicita.setDtInicio(df.format(new Date()).toString());
+			solicita.setDtFim(df.format(new Date().getTime() + 60 * 60 * 1000).toString());
 
 			solicitaFacade.efetivar(solicita);
 			
