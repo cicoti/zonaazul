@@ -6,7 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import br.com.zonaazul.dto.Vaga;
-import br.com.zonaazul.facade.VagaFacade;
+import br.com.zonaazul.service.VagaService;
 import br.com.zonaazul.util.BusinessServiceException;
 import br.com.zonaazul.util.Haversine;
 import br.com.zonaazul.util.ServiceException;
@@ -14,7 +14,8 @@ import br.com.zonaazul.util.ServiceException;
 public class VagaDelegate implements Serializable { 
 	
 	private static final long serialVersionUID = -5916801404195287097L;
-	@Inject private VagaFacade vagaFacade;
+
+	@Inject private VagaService vagaService;
 
 	public boolean pesquisarVagaExiste(Vaga v) throws ServiceException{
 		List<Vaga> listaVaga = this.listaVaga();
@@ -73,14 +74,13 @@ public class VagaDelegate implements Serializable {
 		throw new BusinessServiceException("A vaga solicitada não foi encontrada.");
 		
 	}
-	
 
-	private List<Vaga> listaVagaLivre() throws ServiceException {
-		return vagaFacade.listaVagaLivre();
+	public List<Vaga> listaVagaLivre() throws ServiceException {
+		return vagaService.listaVagaLivre();
 	}
 	
-	private List<Vaga> listaVaga() throws ServiceException {
-		return vagaFacade.listaVaga();
+	public List<Vaga> listaVaga() throws ServiceException {
+		return vagaService.listaVaga();
 	}
 
 }

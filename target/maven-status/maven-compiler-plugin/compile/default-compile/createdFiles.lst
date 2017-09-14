@@ -1,8 +1,6 @@
-br\com\zonaazul\facade\PlacaFacade.class
 br\com\zonaazul\service\VagaService$1.class
 br\com\zonaazul\util\Mensagem.class
 br\com\zonaazul\control\AutenticaBean.class
-br\com\zonaazul\facade\VagaFacade.class
 br\com\zonaazul\util\ServiceException.class
 br\com\zonaazul\service\CompraService.class
 br\com\zonaazul\util\WebUtils.class
@@ -10,12 +8,10 @@ br\com\zonaazul\control\SolicitaBean.class
 br\com\zonaazul\service\PlacaService.class
 br\com\zonaazul\control\AbstractBean.class
 br\com\zonaazul\service\VagaService.class
-br\com\zonaazul\facade\CompraFacade.class
 br\com\zonaazul\util\BusinessServiceException.class
 br\com\zonaazul\dto\Solicita.class
 br\com\zonaazul\util\AppPropertiesService.class
 br\com\zonaazul\dto\Vaga.class
-br\com\zonaazul\facade\VendaFacade.class
 br\com\zonaazul\dto\RespostaErro.class
 br\com\zonaazul\dto\Venda.class
 br\com\zonaazul\control\CreditoBean.class
@@ -25,7 +21,6 @@ br\com\zonaazul\dto\Placa.class
 br\com\zonaazul\dto\Usuario.class
 br\com\zonaazul\service\VagaService$2.class
 br\com\zonaazul\delegate\VagaDelegate.class
-br\com\zonaazul\facade\AutenticaFacade.class
 br\com\zonaazul\util\Haversine.class
 br\com\zonaazul\util\RuntimeServiceException.class
 br\com\zonaazul\dto\Compra.class

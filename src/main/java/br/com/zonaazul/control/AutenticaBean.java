@@ -8,8 +8,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import br.com.zonaazul.delegate.AutenticaDelegate;
 import br.com.zonaazul.dto.Usuario;
-import br.com.zonaazul.facade.AutenticaFacade;
 import br.com.zonaazul.util.BusinessServiceException;
 import br.com.zonaazul.util.RuntimeServiceException;
 
@@ -21,7 +21,7 @@ public class AutenticaBean extends AbstractBean implements Serializable {
 
 	private Usuario usuario;
 	
-	@Inject private AutenticaFacade autenticaFacade;
+	@Inject private AutenticaDelegate autenticaFacade;
 	
 	@PostConstruct
 	public void init() {

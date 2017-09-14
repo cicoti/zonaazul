@@ -11,7 +11,6 @@ import javax.inject.Named;
 import br.com.zonaazul.delegate.CreditoDelegate;
 import br.com.zonaazul.dto.Credito;
 import br.com.zonaazul.dto.Usuario;
-import br.com.zonaazul.facade.CreditoFacade;
 import br.com.zonaazul.util.BusinessServiceException;
 import br.com.zonaazul.util.RuntimeServiceException;
 import br.com.zonaazul.util.ServiceException;
@@ -25,7 +24,6 @@ public class CreditoBean extends AbstractBean implements Serializable {
 	private Long saldo = 0L;
 	private Usuario usuario;
 	@Inject private CreditoDelegate creditoDelegate;
-	@Inject private CreditoFacade creditoFacade;
 	
 	@PostConstruct
 	public void init() {
@@ -45,7 +43,7 @@ public class CreditoBean extends AbstractBean implements Serializable {
 	public Double valorCredito() throws ServiceException{
 		Credito credito = null;
 		try {
-			 credito = creditoFacade.buscarCredito();
+			 credito = creditoDelegate.buscarCredito();
 		} catch (BusinessServiceException e) {
 			alertaMensagem(e.getMessage(),""); 
 		} catch (RuntimeServiceException e) {

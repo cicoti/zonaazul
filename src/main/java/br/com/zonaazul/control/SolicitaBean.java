@@ -12,17 +12,16 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.zonaazul.delegate.CreditoDelegate;
+import br.com.zonaazul.delegate.PlacaDelegate;
+import br.com.zonaazul.delegate.SolicitaDelegate;
 import br.com.zonaazul.delegate.VagaDelegate;
+import br.com.zonaazul.delegate.VendaDelegate;
 import br.com.zonaazul.dto.Credito;
 import br.com.zonaazul.dto.Placa;
 import br.com.zonaazul.dto.Solicita;
 import br.com.zonaazul.dto.Usuario;
 import br.com.zonaazul.dto.Vaga;
 import br.com.zonaazul.dto.Venda;
-import br.com.zonaazul.facade.CreditoFacade;
-import br.com.zonaazul.facade.PlacaFacade;
-import br.com.zonaazul.facade.SolicitaFacade;
-import br.com.zonaazul.facade.VendaFacade;
 import br.com.zonaazul.util.BusinessServiceException;
 import br.com.zonaazul.util.RuntimeServiceException;
 
@@ -38,14 +37,13 @@ public class SolicitaBean extends AbstractBean implements Serializable {
 	private Credito credito;
 	private Solicita solicita;
 	
-	@Inject SolicitaFacade solicitaFacade;
+	@Inject SolicitaDelegate solicitaDelegate;
 	
 	@Inject VagaDelegate vagaDelegate;
-	@Inject PlacaFacade placaFacade;
-	@Inject VendaFacade vendaFacade;
+	@Inject PlacaDelegate placaDelegate;
+	@Inject VendaDelegate vendaDelegate;
 	@Inject CreditoDelegate creditoDelegate;
-	@Inject CreditoFacade creditoFacade;
-	
+
 	
 	@PostConstruct
 	public void init() {
@@ -68,18 +66,18 @@ public class SolicitaBean extends AbstractBean implements Serializable {
 			
 			vaga = vagaDelegate.buscarVaga(this.vaga);
 			
-			placa = placaFacade.pesquisarPlacaUsuario(this.placa);
+			placa = placaDelegate.pesquisarPlacaUsuario(this.placa);
 			
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("vaga", vaga);
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("placa", placa);
 			
-			credito = creditoFacade.buscarCredito();
+			credito = creditoDelegate.buscarCredito();
 					
 			Venda venda = new Venda();
 			venda.setCredito(credito);
 			venda.setUsuario(usuario);
 			
-			vendaFacade.efetivar(venda);
+			vendaDelegate.efetivar(venda);
 						
 			solicita = new Solicita();
 			solicita.setPlaca(placa);
@@ -93,7 +91,7 @@ public class SolicitaBean extends AbstractBean implements Serializable {
 			solicita.setDtInicio(df.format(new Date()).toString());
 			solicita.setDtFim(df.format(new Date().getTime() + 60 * 60 * 1000).toString());
 
-			solicitaFacade.efetivar(solicita);
+			solicitaDelegate.efetivar(solicita);
 			
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("solicita", solicita);
 					

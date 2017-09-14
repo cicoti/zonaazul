@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 import javax.inject.Inject;
 
+import br.com.zonaazul.dto.Credito;
 import br.com.zonaazul.dto.Usuario;
-import br.com.zonaazul.facade.CompraFacade;
-import br.com.zonaazul.facade.VendaFacade;
+import br.com.zonaazul.service.CreditoService;
 import br.com.zonaazul.util.BusinessServiceException;
 import br.com.zonaazul.util.ServiceException;
 
@@ -14,13 +14,14 @@ public class CreditoDelegate implements Serializable {
 
 	private static final long serialVersionUID = 5747992233236931016L;
 	
-	@Inject private CompraFacade compraFacade;
-	@Inject private VendaFacade vendaFacade;
+	@Inject private CompraDelegate compraDelegate;
+	@Inject private VendaDelegate vendaDelegate;
+	@Inject private CreditoService creditoService;
 
 	public Long buscarSaldo(Usuario usuario) throws ServiceException{
 		
-		Long compra = compraFacade.saldoCompra(usuario);
-		Long venda = vendaFacade.saldoVenda(usuario);
+		Long compra = compraDelegate.saldoCompra(usuario);
+		Long venda = vendaDelegate.saldoVenda(usuario);
 		
 		return (compra - venda);
 		
@@ -31,6 +32,12 @@ public class CreditoDelegate implements Serializable {
 			throw new BusinessServiceException("Saldo insuficiente.");
 		}
 		
+	}
+
+
+	public Credito buscarCredito() throws ServiceException {
+		//Retorna o valor de cada credito.
+		return creditoService.buscarCredito();
 	}
 
 }
