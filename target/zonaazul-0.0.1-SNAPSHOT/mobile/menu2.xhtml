@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="style-2.css" />
+
+<script type="text/javascript" src="//use.typekit.net/vue1oix.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;"/>
+
+<title>Mobile Slide Out Menu</title>
+
+<script src="jquery.js"></script>
+<script src="hammer.js"></script>
+
+<script>
+
+$(document).ready(function(e) {
+	
+	var startX, curX, startY, curY; // Variables
+	var newXScroll, newYScroll, genXScroll; // More Variables!
+	
+	// Change the height of the sidebar, as well as a few things to do with the main content area, so the user
+	// can actually scroll in the content area.
+	function sideBarHeight() { 
+	
+		var docHeight = $(document).height();
+		var winHeight = $(window).height();
+		
+		$('.slide-in').height(winHeight);
+		$('#main-container').height(winHeight);
+		$('#sub-container').height($('#sub-container').height());
+	} 
+	
+	sideBarHeight();
+	
+	var outIn = 'in';
+	
+	Hammer(document.getElementById('main-container')).on('swiperight', function(e) {
+			$('.slide-in').toggleClass('on');		
+			$('#main-container').toggleClass('on');
+			outIn = 'out';
+			
+	});
+	
+	Hammer(document.getElementById('main-container')).on('swipeleft', function(e) {
+			$('.slide-in').toggleClass('on');	
+			$('#main-container').toggleClass('on');
+			outIn = 'in';
+	});
+	
+	
+	function runAnimation() {
+	
+		if(outIn == 'out') {
+			
+			$('.slide-in').toggleClass('on');
+			$('#main-container').toggleClass('on');	
+			outIn = 'in';
+			
+		} else if(outIn == 'in') {
+		
+			$('.slide-in').toggleClass('on');	
+			$('#main-container').toggleClass('on');	
+			outIn = 'out';
+			
+		}
+	
+	}
+	
+	$('.menu-icon')[0].addEventListener('touchend', function(e) {
+		$('.slide-in').toggleClass('on');		
+		$('#main-container').toggleClass('on');
+	});
+	
+	$('.menu-icon').click(function() {
+		$('.slide-in').toggleClass('on');		
+		$('#main-container').toggleClass('on');
+	});
+	
+	
+
+});
+
+</script>
+
+</head>
+<body>
+
+<div id="main-container" class="tk-chaparral-pro">
+	<div id="sub-container">
+		<div class="top-bar">
+			
+			<div class="menu-icon">
+				<div class="bar"> </div>
+				<div class="bar"> </div>
+				<div class="bar"> </div>
+			</div>
+			
+			<div class="travel">
+				<a href="http://www.inserthtml.com/2013/06/mobile-menu/">Back to the Article</a>
+			</div>
+			
+		</div>
+		<div id="content">
+			<!-- Other Content goes here .. -->
+			<div style="padding: 20px; font-size: 1.8em;">
+				Try it out on Mobile! (Demo 2)
+			</div>
+			
+		</div>
+	</div>	
+</div>
+
+<div class="slide-in">
+	<ul class="tk-museo-sans">
+		<li>HOME</li>
+		<li>FORUM</li>
+		<li>TUTORIALS</li>
+		<li>RESOURCES</li>
+	</ul>
+</div>
+
+
+</body>
+</html>

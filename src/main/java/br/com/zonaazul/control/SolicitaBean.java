@@ -58,25 +58,37 @@ public class SolicitaBean extends AbstractBean implements Serializable {
 
 		try {
 			
+			//Verifica se o saldo do compra - venda é positivo.
 			creditoDelegate.saldoPositivo(usuario);
 			
+			//Verifica se a vaga digitada é existente.
 			vagaDelegate.pesquisarVagaExiste(this.vaga);
-			vagaDelegate.pesquisarVagaLivre(this.vaga);
-			vagaDelegate.pesquisarVagaProximidade(this.vaga);
 			
+			//Verifica se a vaga está livre.
+			vagaDelegate.pesquisarVagaLivre(this.vaga);
+			
+			//Verfica se o usuario está proximo da vaga.
+			vagaDelegate.pesquisarVagaProximidade(this.vaga);
+						
 			vaga = vagaDelegate.buscarVaga(this.vaga);
 			
+			//Primeiro saber se a placa é do usuario
 			placa = placaDelegate.pesquisarPlacaUsuario(this.placa);
+			
+			//Depois saber se essa placa já não está estacionada. Essa ordem nao pode mudar.
+			solicitaDelegate.pesquisarSolicitacaoPorPlaca(placa);
 			
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("vaga", vaga);
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("placa", placa);
 			
+			//Buscar o valor do credito/hora da vaga.
 			credito = creditoDelegate.buscarCredito();
 					
 			Venda venda = new Venda();
 			venda.setCredito(credito);
 			venda.setUsuario(usuario);
 			
+			//Gravar venda.
 			vendaDelegate.efetivar(venda);
 						
 			solicita = new Solicita();
@@ -91,6 +103,7 @@ public class SolicitaBean extends AbstractBean implements Serializable {
 			solicita.setDtInicio(df.format(new Date()).toString());
 			solicita.setDtFim(df.format(new Date().getTime() + 60 * 60 * 1000).toString());
 
+			//Gravar solicitacao.
 			solicitaDelegate.efetivar(solicita);
 			
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("solicita", solicita);
