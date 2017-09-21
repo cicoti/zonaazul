@@ -1,0 +1,137 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:pm="http://primefaces.org/mobile"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:jsf="http://xmlns.jcp.org/jsf">
+	
+<h:head>
+
+<meta name="viewport"
+		content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, target-densitydpi=device-dpi" />
+	<link rel="stylesheet"
+		href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+	<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script
+		src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+		
+<link rel="stylesheet" type="text/css" href="style-2.css" />
+
+<script type="text/javascript" src="//use.typekit.net/vue1oix.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+
+<title>Zona Azul</title>
+
+<script src="jquery.js"></script>
+<script src="hammer.js"></script>
+
+<script>
+
+$(document).ready(function(e) {
+	
+	$('#menu').load('menu.xhtml');
+	 
+	var startX, curX, startY, curY; // Variables
+	var newXScroll, newYScroll, genXScroll; // More Variables!
+	
+	// Change the height of the sidebar, as well as a few things to do with the main content area, so the user
+	// can actually scroll in the content area.
+	function sideBarHeight() { 
+	
+		var docHeight = $(document).height();
+		var winHeight = $(window).height();
+		
+		$('.slide-in').height(winHeight);
+		$('#main-container').height(winHeight);
+		$('#sub-container').height($('#sub-container').height());
+	} 
+	
+	sideBarHeight();
+	
+	var outIn = 'in';
+	
+	Hammer(document.getElementById('main-container')).on('swiperight', function(e) {
+			$('.slide-in').toggleClass('on');		
+			$('#main-container').toggleClass('on');
+			outIn = 'out';
+			
+	});
+	
+	Hammer(document.getElementById('main-container')).on('swipeleft', function(e) {
+			$('.slide-in').toggleClass('on');	
+			$('#main-container').toggleClass('on');
+			outIn = 'in';
+	});
+	
+	
+	function runAnimation() {
+	
+		if(outIn == 'out') {
+			
+			$('.slide-in').toggleClass('on');
+			$('#main-container').toggleClass('on');	
+			outIn = 'in';
+			
+		} else if(outIn == 'in') {
+		
+			$('.slide-in').toggleClass('on');	
+			$('#main-container').toggleClass('on');	
+			outIn = 'out';
+			
+		}
+	
+	}
+	
+	$('.menu-icon')[0].addEventListener('touchend', function(e) {
+		$('.slide-in').toggleClass('on');		
+		$('#main-container').toggleClass('on');
+	});
+	
+	$('.menu-icon').click(function() {
+		$('.slide-in').toggleClass('on');		
+		$('#main-container').toggleClass('on');
+	});
+
+		
+
+});
+
+</script>
+
+</h:head>
+
+<body>
+
+<div id="main-container" >
+	<div id="sub-container">
+		<div class="top-bar">
+			
+			<div class="menu-icon">
+				<div class="bar"> </div>
+				<div class="bar"> </div>
+				<div class="bar"> </div>
+			</div>
+				
+			
+		</div>
+
+		<div data-role="header">
+			<h1>Cadastro de Usuário</h1>
+		</div>
+						
+			<div data-role="cadastra" class="ui-content">
+			<form data-ajax="false" jsf:id="formCadastrar" jsf:prependId="false">
+			<p:messages id="idMessage" showDetail="true" autoUpdate="true"
+						closable="true" />
+			
+			</form>
+			</div>
+			
+	</div>	
+</div>
+
+<div id="menu" class="slide-in"/>
+
+</body>
+</html>
